@@ -1,6 +1,6 @@
 Simple nodeJS blog 
 
-## Running the server
+Running the server
 
-# blog-dusk_tavern
+### blog-dusk_tavern
 $ node blog.js
