@@ -1,0 +1,280 @@
+
+body{
+    font-size: 16px;
+    padding:0px;
+    margin:0px;
+    font-family: 'proxima-nova',helvetica neue,helvetica,arial,sans-serif;
+    background-color: whitesmoke;
+}
+#body-box{
+    /*1366x768*/
+    /* second edit width: 1349px;*/
+    /*width: 100%;*/
+}
+
+
+#home{
+    /*width: 1349px;*/
+}
+#title{
+  /* background-image: url('lift-header-background-triangles.svg'),linear-gradient(to bottom,#56bae8 25%,#938aca 100%);*/
+    background-position: center top,center center;
+    background-repeat: no-repeat,repeat;
+    background-size: 2000px auto,contain;
+    /*padding: 15px 0;*/
+    position: relative;
+    background-size: 2000px auto,contain;
+    /*  background-color: #56bae8;
+    second edit width: 1349px;*/
+    /*width: 1349px;*/
+
+
+}
+#sub-title{
+    /*width: 1349px;*/
+       /* width: 773px;*/
+
+
+}
+#root{
+    font-size: 40px;
+    /* margin-left: 300px;*/
+    /*width: 250px;*/
+   /* width:198px;/*25%;*/
+   color: #4183C4;
+}
+
+#logo{
+/*margin: auto; */
+    font-size: 35px;
+    /* margin-top: 100px; */
+    /* margin-left: 500px; */
+    /*width: 250px;*/
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+#body-box #home .content{
+   /* margin-top: 100px;
+    margin-left: 20px;*/
+
+}
+#blog-box{
+margin-top: 50px; 
+   /* margin-left: 300px;
+    margin-right: 300px;*/
+    min-height: 600px;
+    /* width: 75%; */
+    /*width: 1349px;*/
+}
+#profile{
+   
+    float: left;
+     /*margin-top:100px;*/
+   /* width: 25%;*/
+}
+#profile-name{
+    font-weight: bold;
+}
+.blog-title{
+    color: #4183C4;
+    cursor: pointer;
+
+}
+.blog-title:hover{
+    text-decoration: none;
+
+}
+a:hover{
+    text-decoration: none;
+}
+.date{
+
+    /* font-weight: bold; */
+    margin-top: 10px;
+    color: whitesmoke;
+}
+#post{
+    margin-bottom: 100px;
+    /*background-color: white;
+border-radius: 8px;
+border: 1px solid #e8e8e8;*/
+}
+.posted{
+    color:grey;
+    display: inline;
+    font-size: 12px;
+}
+.descript{
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+.single_post{
+    margin-bottom: 50px;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 10px;
+}
+#footer{
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    clear:both;
+    background-color: rgba(0, 0, 0, 0.83);
+    color: white;
+}
+/*#recent-post{
+    border-bottom-color: grey;
+}*/
+.btn{
+    background-color: white;
+    color: #46b8da;
+    font-weight: 100;
+    margin-bottom: 40px;
+}
+
+
+.continue-href:hover{
+    text-decoration: none;
+    color: white;
+}
+#about-header{
+border-bottom: 1px solid #c4c4c4;
+margin-bottom: 20px;
+
+}
+#nav-header{
+/*background-image: url('dusk-image.jpg');
+height: 300px;*/
+margin-bottom: 0px;
+
+
+}
+.title-inner{
+    margin-bottom: 40px;
+
+}
+.selected-blog-title{
+    margin-bottom: 10px;
+}
+.selected-blog-date{
+    color: grey;
+    display: inline;
+    font-size: 12px;
+}
+.post_content{
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 30px;
+}
+.dangeroushtml{
+    margin-bottom: 50px;
+}
+.shareit{
+
+}
+.sharer-icon{
+    color: black;
+    margin-right: 10px;
+}
+.link-menu{
+/*margin-right: auto;
+cursor: pointer;
+color: #4183C4;
+ padding-right: 20px;
+ display: inline;
+ padding-top: 10px;*/
+}
+#hover-here{
+    display: none;
+}
+
+.tweetsec{
+    display: none;
+}
+.scrollup{
+    position: none;
+}
+.label{
+    margin-left: 10px;
+}
+.blog-label-div{
+
+}
+#twitterbox-link{
+    display: none;
+}
+
+
+/**/
+
+
+
+
+/**/
+
+@media screen and (max-width: 600px) {
+    #twitterbox-link{
+    display: block;
+}
+    #root{
+            text-align: center;
+    }
+    #menu{
+
+    text-align: center;
+    padding-top: 10px;
+
+
+}
+
+    #hover-here{
+    display: block;
+    background-color: white;
+    color: white;
+    /*padding-bottom: 5px;
+     padding-top: 5px;*/
+     
+    }
+    #white-bg{
+        background-color: black;
+        padding-left: 20%;
+        padding-right: 20%;
+         border-radius: 5px;
+             padding-top: 5px;
+    padding-bottom: 5px
+    }
+    #white-bg:after{
+        display: inline-block;
+    width: 1.5rem;
+    height: 0.21429rem;
+    background: #fff;
+    border-radius: 0.10714rem;
+    transition: .3s;
+    position: absolute;
+    left: 0;
+    content: '';
+    -webkit-transform-origin: 0.10714rem center;
+    transform-origin: 0.10714rem center;
+
+    }
+    #white-bg:before{
+        display: inline-block;
+    width: 1.5rem;
+    height: 0.21429rem;
+    background: #fff;
+    border-radius: 0.10714rem;
+    transition: .3s;
+    position: absolute;
+    left: 0;
+    content: '';
+    -webkit-transform-origin: 0.10714rem center;
+    transform-origin: 0.10714rem center;
+    }
+
+
+
+.scrollup{
+    position: fixed;
+    top: 100px;
+}
+}

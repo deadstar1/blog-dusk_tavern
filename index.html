@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hello React!</title>
+    <!--fluryy -->
+     
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js' type="text/javascript"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link type="text/css" href="css/theme2.css" rel="stylesheet">
+    
+
+
+  </head>
+
+  <body onload='loadAddThis()' >
+    <div id="body-box" >
+  </body>
+  <script type="text/babel">
+  function createMarkup() { 
+    return { __html: '<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/NUkesec" data-widget-id="703795028305379328">Tweets by @NUkesec</a>'
+
+
+      }; 
+  };
+
+    var Single_post_content = React.createClass({
+
+      getInitialState:function () {
+      // body...
+        return {data_blog: []};
+      },
+    componentDidMount: function() {
+      $.ajax({
+        url:'/blog/' + this.props.blogID,
+        dataType:'json',
+        cache: false,
+        success: function(data){
+          console.log('scuess single record');
+          console.log('blogID:' + this.props.blogID)
+          this.setState({data_blog:data[0]});
+          console.log('the fetch record: ' + data[0]._id)
+        }.bind(this),
+        error: function(xhr, status,err){
+          console.error('urlblog',status,err.toString());
+
+        }.bind(this)
+
+
+      });
+
+      },
+    fetch_data: function(){
+      console.log('loading');
+      var content='';
+      content=this.state.data_blog.content;
+      if(content==null){
+        content='<div class="loader">Loading...</div>'
+      }
+      else {
+        content="<div class='title-inner'> <h1 class='selected-blog-title'>"+ this.state.data_blog.title +"</h1> <span class='selected-blog-date'><span class='glyphicon glyphicon-calendar'></span> &nbsp;" + this.state.data_blog.date +"</span> </div> <div class='dangeroushtml' >"+this.state.data_blog.content+"</div>";
+
+      }
+      return{
+        __html:content
+      }
+
+    },
+
+    render: function(){
+      return (
+
+        <div id={'post/blog' + this.state.data_blog._id} className='post_content'>
+        <div dangerouslySetInnerHTML={this.fetch_data()}/>
+        <div className="addthis_native_toolbox">
+</div>
+        </div>
+      );
+
+    }
+  });
+
+
+  var Blog_div= React.createClass({
+      getInitialState:function () {
+      // body...
+        return {data_blog: []};
+      },
+    componentDidMount: function() {
+      $.ajax({
+        url:'/blog',
+        dataType:'json',
+        cache: false,
+        success: function(data){
+          console.log('scuess');
+          this.setState({data_blog:data});
+        }.bind(this),
+        error: function(xhr, status,err){
+          console.error('urlblog',status,err.toString());
+
+        }.bind(this)
+
+
+      });
+
+      },
+      render: function(){
+        var Blognode=null;
+        Blognode=this.state.data_blog.map(function(data){
+
+          return (
+            
+            <Single_post data={data}/>
+          );
+
+        });
+        return (
+          <span>
+          {Blognode}
+
+          </span>
+          );
+      }
+    });
+
+    var About_div = React.createClass({
+
+      render: function(){
+        return(
+          <div id='about'>
+            <div id='about-header'>
+              <h1>About Me</h1>
+            </div>
+            <div id='about-content'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam illud vehementer repugnat, eundem beatum esse et multis malis oppressum. Sed eum qui audiebant, quoad poterant, defendebant sententiam suam. Prioris generis est docilitas, memoria; Mihi, inquam, qui te id ipsum rogavi? Sed ille, ut dixi, vitiose. Hoc est non dividere, sed frangere.
+                <h3>Projects</h3>
+                <span>
+                <ul>
+                  <li>Suo genere perveniant ad extremum;</li>
+                  <li>Mihi vero, inquit, placet agi subtilius et, ut ipse dixisti, pressius.</li>
+                </ul>
+                </span>
+
+            </div>
+
+          </div>
+          );
+
+      },
+    });
+
+    var Single_post= React.createClass({
+
+      render: function() {
+        return(
+          <div className='single_post'>
+          <div className='title'>
+          <b><a onClick={Single_blog_click.bind(this,'post',this.props.data._id)}  className='blog-title'  ><h2>{this.props.data.title}</h2></a></b>
+          </div>
+          <div className='date'>
+          <div className='posted'><span className="glyphicon glyphicon-calendar"></span> &nbsp; {this.props.data.date} </div>
+
+          </div>
+          <div className='descript'>
+          {this.props.data.description}
+          </div>
+          <a  type="button" target='_self' className="btn btn-info btn-md" onClick={Single_blog_click.bind(this,'post',this.props.data._id)}>Continue reading</a>
+</div>
+          );
+      },
+
+    });
+    var Header_and_title = React.createClass({
+      render: function(){
+        return(
+<nav id='nav-header' className="navbar navbar-inverse navbar-fixed-top">
+  <div className="container">
+    <div className="navbar-header">
+      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>
+        <span className="icon-bar"></span>                        
+      </button>
+      <a className="navbar-brand" href="#"> .adrian_belen<b>&#x0007B;</b>&nbsp;<b>&#x0007D; </b></a>
+    </div>
+    <div className="collapse navbar-collapse" id="myNavbar">
+      <ul className="nav navbar-nav navbar-right">
+        <li className='link-menu'><a href='#home' >Blog</a></li>
+        <li className='link-menu'><a href='#about'>About</a></li>
+        <li className='link-menu' id='twitterbox-link'><a href="#twitterbox">Security tweets</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+          );
+
+      },
+
+    });
+
+    var MenuComponent = React.createClass({
+      render: function(){
+        var selectedmenu=this.props.menu; // the selected view
+        return (
+        <div>
+        <Header_and_title click={this.props.click}/> //the click handler.
+        <img id='logo' className='img-responsive' src='css/dusk-image.jpg'></img>
+        <div id="home" className="container-fluid">
+          
+
+          <div id='blog-box' className='row'>
+
+          <div className='col-md-2 col-sm-0 col-xs-0'>
+          </div>
+
+          <div className='col-md-6 col-sm-12 col-xs-12' id='post'>
+          {selectedmenu}
+          </div>
+          <div className='col-md-1 col-sm-0 col-xs-0 twitter' ></div>
+
+          <div id='twitterbox' className='col-md-3 col-sm-0 col-xs-12' dangerouslySetInnerHTML={createMarkup()} />
+          {console.log('twiiter box')}
+
+          </div>
+  
+
+          <div id="footer" className='row'>
+            © 2015, WEEVE se! <br/>
+            Found a mistake or a bug? This site is open source. <br/>
+            Log bugs (or submit pull requests) at http://github.com/Vel0x/vel0x.github.io
+          </div>
+        </div>
+        </div>
+        );
+
+      }
+
+
+    });
+    var Sharer = function(socialmedia){
+      console.log('sharer');
+      var url='';
+      if (socialmedia=='fb'){
+        url='https://www.facebook.com/sharer.php?u=' + document.location
+
+      } 
+      else if(socialmedia=='twitter'){
+        url='https://twitter.com/share?url=' + document.location
+
+      }
+      else if(socialmedia=='reddit'){
+        url='https://www.reddit.com/submit?url=' + document.location
+        
+      }
+      else if(socialmedia=='google'){
+        url='https://plus.google.com/share?url=' + document.location
+        
+      }
+
+      window.open(url,"share it!",'width=550,height=235')
+
+
+    };
+
+    var Single_blog_click = function(menu,id){
+       if(menu=='post'){
+        {console.log('Single_blog_click'); document.location='#post/blog' + id; location.reload();}
+       
+
+        
+       
+        // reacive some additional parameter. 
+
+      }
+
+    };
+    var Blog_body = function (comp){
+      {console.log(2777)}
+      
+      ReactDOM.render(<MenuComponent menu={comp} click={Single_blog_click}/>,document.getElementById('body-box')
+    );
+    };
+    // check the url # part if exist get the #parameter_value. to load the selected page, this function loads the selected menu or blog post
+
+
+  function myFunctionload() {
+    //make route here for all.
+    if (location.hash.substring(6,10)=='blog'){ //single post
+      
+      console.log('single record')
+      var blog_id=0;
+      blog_id=location.hash.substring(10);
+      Blog_body(<Single_post_content blogID={blog_id}/>); //it loads here
+
+
+    }
+    else if(location.hash=='#about'){
+      Blog_body(<About_div/>);
+
+    }
+    else if(location.hash='#home'){
+      Blog_body(<Blog_div/>);
+    }
+
+};
+
+/**  function myFunctionhash() { //for the blog view and about view,
+    if (location.hash.substring(6,10)=='blog'){
+      {console.log('myFunctionhash'); location.reload();}
+
+
+    }
+    else if(location.hash=='#about'){
+      Blog_body(<About_div/>);
+
+    }
+}**/
+function test (){
+  alert('load all');
+}
+
+  window.addEventListener("hashchange", myFunctionload);
+  window.addEventListener('load',myFunctionload);
+
+
+
+  </script>
+  <script type="text/javascript">
+
+  </script>
+ 
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://arrow.scrolltotop.com/arrow13.js"></script>
+<noscript>Not seeing a <a href="https://www.scrolltotop.com/">Scroll to Top Button</a>? Go to our FAQ page for more info.</noscript>
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-569b61df7d055f6e&async=1" async="async"></script>
+<script src="/js/tweetfortheweak.js"></script>
+    <script type="text/javascript">
+    var loadAddThis=function() {
+      addthis.init()
+       twttr.widgets.load()
+      //cool this here http://stackoverflow.com/questions/25234101/how-to-integrate-the-twitter-widget-into-reactjs
+}
+
+    </script>
+
+
+</html>
+
+<!-- cool this here for react js //cool this here http://stackoverflow.com/questions/25234101/how-to-integrate-the-twitter-widget-into-reactjs-->
