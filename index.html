@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hello React!</title>
-    <!--fluryy -->
+    
      
     <script src="build/react.js"></script>
     <script src="build/react-dom.js"></script>
@@ -14,6 +14,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link type="text/css" href="css/theme2.css" rel="stylesheet">
+
     
 
 
@@ -191,8 +192,8 @@
     </div>
     <div className="collapse navbar-collapse" id="myNavbar">
       <ul className="nav navbar-nav navbar-right">
-        <li className='link-menu'><a href='#home' >Blog</a></li>
-        <li className='link-menu'><a href='#about'>About</a></li>
+        <li className='link-menu'><a href='#home' id='home-menu' >Blog</a></li>
+        <li className='link-menu'><a href='#abouttest' id='about-menu'>About</a></li>
         <li className='link-menu' id='twitterbox-link'><a href="#twitterbox">Security tweets</a></li>
       </ul>
     </div>
@@ -206,14 +207,16 @@
 
     });
 
-    var MenuComponent = React.createClass({
+    var MenuComponent = React.createClass({// just load that shit, view!
       render: function(){
         var selectedmenu=this.props.menu; // the selected view
         return (
         <div>
-        <Header_and_title click={this.props.click}/> //the click handler.
+        <Header_and_title/> //the click handler. remove this click function
         <img id='logo' className='img-responsive' src='css/dusk-image.jpg'></img>
+        <div id='abouttest'></div>
         <div id="home" className="container-fluid">
+        
           
 
           <div id='blog-box' className='row'>
@@ -230,6 +233,8 @@
           {console.log('twiiter box')}
 
           </div>
+          
+
   
 
           <div id="footer" className='row'>
@@ -272,7 +277,7 @@
 
     var Single_blog_click = function(menu,id){
        if(menu=='post'){
-        {console.log('Single_blog_click'); document.location='#post/blog' + id; location.reload();}
+        {console.log('Single_blog_click loads'); document.location='#post/blog' + id; addthis.layers.refresh();}
        
 
         
@@ -285,7 +290,7 @@
     var Blog_body = function (comp){
       {console.log(2777)}
       
-      ReactDOM.render(<MenuComponent menu={comp} click={Single_blog_click}/>,document.getElementById('body-box')
+      ReactDOM.render(<MenuComponent menu={comp} />,document.getElementById('body-box') //get the component to load
     );
     };
     // check the url # part if exist get the #parameter_value. to load the selected page, this function loads the selected menu or blog post
@@ -299,15 +304,26 @@
       var blog_id=0;
       blog_id=location.hash.substring(10);
       Blog_body(<Single_post_content blogID={blog_id}/>); //it loads here
+      addthis.layers.refresh();
+      
+     
 
 
     }
-    else if(location.hash=='#about'){
+    else if(location.hash=='#abouttest'){
       Blog_body(<About_div/>);
+      $('#about-menu').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+      });
 
     }
     else if(location.hash='#home'){
+      console.log('hash change')
       Blog_body(<Blog_div/>);
+    $('#home-menu').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        
+      });
     }
 
 };
@@ -347,7 +363,7 @@ function test (){
 <script src="/js/tweetfortheweak.js"></script>
     <script type="text/javascript">
     var loadAddThis=function() {
-      addthis.init()
+      //addthis.init()
        twttr.widgets.load()
       //cool this here http://stackoverflow.com/questions/25234101/how-to-integrate-the-twitter-widget-into-reactjs
 }
