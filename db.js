@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongodb = require("mongodb")
+var marked = require('marked');
 mongoose.connect('mongodb://deadstar1-blog-2320247:27017/admin');
 //create a new schema.
 var Schema = new mongoose.Schema({
@@ -49,7 +50,8 @@ function find_db(blog_id,response){
             response.header("Access-Control-Allow-Origin","*");
             response.header("Content-Type","application/json");
             console.log(entry);
-            console.log(data);
+            console.log('consoleLOG' + marked(data[0].content));
+            data[0].content=marked(data[0].content);
             response.send(data);
             }
     });

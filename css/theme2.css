@@ -203,7 +203,7 @@ color: #4183C4;
 #twitterbox-link{
     display: none;
 }
-
+img { display:block; height: auto; max-width: 100%; }
 
 /**/
 

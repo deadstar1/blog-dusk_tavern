@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 
 //select  one blog
 app.get('/',function(request, response) {
-    response.sendfile(__dirname + '/index.html');
+    response.sendFile(__dirname + '/index.html');
 });
 app.get('/blog/:id',function(request,response){
     var blogID=request.params.id;
