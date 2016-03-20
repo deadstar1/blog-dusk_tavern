@@ -57,7 +57,7 @@ app.get('/test',function(request,response){
     db.list_all();
 })
 
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT, process.env.IP || process.env.OPENSHIFT_NODEJS_IP, function(){
   var addr = "127.00.0.1";
   console.log("Chat server listening at", addr.address + ":" + addr.port);
 });
