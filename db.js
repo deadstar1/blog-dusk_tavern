@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var mongodb = require("mongodb")
 var marked = require('marked');
-mongoose.connect('mongodb://deadstar1-blog-2320247:27017/admin');
+mongoose.connect('mongodb://deadstar1-blog-2320247:27017/admin' || 'mongodb://127.0.0.1:27017/admin');
 //create a new schema.
 var Schema = new mongoose.Schema({
     content:String,
