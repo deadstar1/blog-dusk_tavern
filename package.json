@@ -1,8 +1,12 @@
+"scripts": {
+  "start": "supervisor server.js"
+},
+"main": "server.js",
 {
   "name": "myblogsite",
   "version": "1.0.0",
   "description": "this is my blog",
-  "main": "blog.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -59,5 +59,5 @@ app.get('/test',function(request,response){
 
 app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT, process.env.IP || process.env.OPENSHIFT_NODEJS_IP, function(){
   var addr = "127.00.0.1";
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
+  console.log("Chat server listening at", process.env.IP + ":" +process.env.PORT);
 });
